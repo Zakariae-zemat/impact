@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 
 const images = [
   "/pic.jpeg",
@@ -41,14 +42,19 @@ export default function ImageSlider() {
               padding: '0.5rem', // Adds some spacing around the image
             }}
           >
-            <img
-              src={src || "/placeholder.svg"}
-              alt={`Club activity ${index + 1}`}
-              className="w-full h-full rounded-xl object-cover shadow-lg border-2 border-white/50"
-              style={{
-                boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-              }}
-            />
+            <div className="relative w-full h-full">
+              <Image
+                src={src || "/placeholder.svg"}
+                alt={`Club activity ${index + 1}`}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="rounded-xl object-cover shadow-lg border-2 border-white/50"
+                style={{
+                  boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                }}
+                priority={index === 0}
+              />
+            </div>
           </div>
         )
       })}

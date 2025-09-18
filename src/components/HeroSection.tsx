@@ -1,21 +1,37 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
+import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Target, Sparkles, ArrowRight, Play } from "lucide-react"
 import ImageSlider from "./image-slider"
+import dynamic from 'next/dynamic'
 
-export default function HeroSection({ setIsVideoOpen }) {
+// Dynamically import VideoPopup to avoid SSR issues
+const VideoPopup = dynamic(() => import('@/components/video-popup'), {
+  ssr: false
+})
+
+export default function HeroSection() {
+  const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);
   // Typewriter animation state
   const [displayedText, setDisplayedText] = useState("")
   const [isTyping, setIsTyping] = useState(true)
 
+  const handleCloseVideo = useCallback(() => {
+    setIsVideoOpen(false);
+  }, []);
+
+  const handleOpenVideo = useCallback(() => {
+    setIsVideoOpen(true);
+  }, []);
+
   useEffect(() => {
     const text = "IMPACT"
     let currentIndex = 0
-    let timeoutId
+    let timeoutId: NodeJS.Timeout | null = null
 
     const typeNext = () => {
       if (currentIndex < text.length) {
@@ -36,7 +52,10 @@ export default function HeroSection({ setIsVideoOpen }) {
     typeNext()
 
     return () => {
-      if (timeoutId) clearTimeout(timeoutId)
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+      }
     }
   }, [])
 
@@ -87,7 +106,7 @@ export default function HeroSection({ setIsVideoOpen }) {
             variant="outline"
             size="lg"
             className="border-orange-200 hover:bg-orange-50 bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300"
-            onClick={() => setIsVideoOpen(true)}
+            onClick={handleOpenVideo}
           >
             <Play className="mr-2 h-4 w-4" />
             Savoir Plus
@@ -121,7 +140,7 @@ export default function HeroSection({ setIsVideoOpen }) {
             </div>
             <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
               <span className="block xs:hidden">Domaines</span>
-              <span className="hidden xs:block">Domaines d'Expertise</span>
+              <span className="hidden xs:block">Domaines d&apos;Expertise</span>
             </div>
           </div>
         </div>
@@ -134,7 +153,7 @@ export default function HeroSection({ setIsVideoOpen }) {
   </div>
 </section>
 
-      <VideoPopup isOpen={isVideoOpen} onClose={() => setIsVideoOpen(false)} videoSrc="/club-impact-presentation.mp4" />
+      <VideoPopup isOpen={isVideoOpen} onClose={handleCloseVideo} videoSrc="/club-impact-presentation.mp4" />
     </>
   )
 }

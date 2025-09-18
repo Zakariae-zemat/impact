@@ -19,7 +19,7 @@ const testimonials: Testimonial[] = [
     id: 1,
     name: "Sarah K.",
     role: "Membre du Club",
-    content: "Rejoindre le Club IMPACT a été une expérience transformatrice. J'ai pu développer mes compétences en photographie et rencontrer des personnes incroyables.",
+    content: "Rejoindre le Club IMPACT a été une expérience transformatrice. J&apos;ai pu développer mes compétences en photographie et rencontrer des personnes incroyables.",
     rating: 5,
     avatar: "/avatars/avatar-1.jpg"
   },
@@ -27,7 +27,7 @@ const testimonials: Testimonial[] = [
     id: 2,
     name: "Mehdi T.",
     role: "Responsable Ateliers",
-    content: "En tant qu'animateur, voir l'évolution des membres est extrêmement gratifiant. Leur créativité et leur engagement sont une source d'inspiration.",
+    content: "En tant qu&apos;animateur, voir l&apos;évolution des membres est extrêmement gratifiant. Leur créativité et leur engagement sont une source d&apos;inspiration.",
     rating: 5,
     avatar: "/avatars/avatar-2.jpg"
   },
@@ -35,7 +35,7 @@ const testimonials: Testimonial[] = [
     id: 3,
     name: "Lina M.",
     role: "Nouvelle Membre",
-    content: "Je viens de rejoindre le club et je suis déjà impressionnée par l'ambiance bienveillante et la qualité des ateliers. Je recommande vivement !",
+    content: "Je viens de rejoindre le club et je suis déjà impressionnée par l&apos;ambiance bienveillante et la qualité des ateliers. Je recommande vivement !",
     rating: 4,
     avatar: "/avatars/avatar-3.jpg"
   }

@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -90,7 +91,7 @@ export default function RejoindreClub() {
             </p>
             <div className="space-y-3">
               <Link href="/" className="block w-full">
-                <Button className="w-full bg-[#FC9804] hover:bg-[#FFAE07] text-white">Retour à l'Accueil</Button>
+                <Button className="w-full bg-[#FC9804] hover:bg-[#FFAE07] text-white">Retour à l&apos;Accueil</Button>
               </Link>
               <p className="text-sm text-black/50">Suivez-nous sur nos réseaux sociaux pour rester informé !</p>
             </div>
@@ -110,7 +111,14 @@ export default function RejoindreClub() {
               <ArrowLeft className="w-5 h-5 text-black/50" />
               <div className="flex items-center gap-3">
               <div className="flex items-center">
-              <img className="h-12 w-auto" src="logo-light.png" alt="Logo Impact" />
+              <Image 
+                src="/logo-light.png" 
+                alt="Logo Impact" 
+                width={48} 
+                height={48} 
+                className="h-12 w-auto"
+                priority
+              />
             </div>
               </div>
             </Link>
@@ -122,7 +130,7 @@ export default function RejoindreClub() {
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
           <div className="text-center space-y-4 mb-12">
-            <Badge className="bg-[#FC9804]/10 text-[#FC9804] border-[#FC9804]/20">🚀 Rejoignez l'Aventure</Badge>
+            <Badge className="bg-[#FC9804]/10 text-[#FC9804] border-[#FC9804]/20">🚀 Rejoignez l&apos;Aventure</Badge>
             <h1 className="text-3xl lg:text-4xl font-bold text-black text-balance">Candidature Club IMPACT</h1>
             <p className="text-xl text-black/50 max-w-2xl mx-auto">
               Prêt à développer vos talents et rejoindre une communauté dynamique ? Remplissez ce formulaire pour
@@ -219,7 +227,7 @@ export default function RejoindreClub() {
                             name="niveau"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>Niveau d'Études *</FormLabel>
+                                <FormLabel>Niveau d&apos;Études *</FormLabel>
                                 <FormControl>
                                   <select
                                     className="flex h-9 w-full rounded-md border border-black/20 bg-transparent px-3 py-1 text-base shadow-xs transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-black/50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#FC9804] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
@@ -262,10 +270,10 @@ export default function RejoindreClub() {
                       <div className="space-y-4">
                         <h3 className="text-lg font-semibold text-black flex items-center gap-2">
                           <Heart className="w-5 h-5 text-[#FC9804]" />
-                          Activités d'Intérêt
+                          Activités d&apos;Intérêt
                         </h3>
                         <p className="text-sm text-black/50">
-                          Sélectionnez les activités qui vous intéressent le plus (plusieurs choix possibles) :
+                          Sélectionnez les activités qui vous intéressent le plus (plusieurs choix possibles)&nbsp;:
                         </p>
 
                         <div className="grid md:grid-cols-2 gap-3">
@@ -407,7 +415,7 @@ export default function RejoindreClub() {
                     </div>
                     <h4 className="font-semibold text-foreground">Questions ?</h4>
                     <p className="text-sm text-muted-foreground">
-                      N'hésitez pas à nous contacter pour plus d'informations
+                      N&apos;hésitez pas à nous contacter pour plus d&apos;informations
                     </p>
                     <Button variant="outline" size="sm" className="border-[#FC9804]/30 hover:bg-[#FC9804]/10 bg-transparent text-[#FC9804] hover:text-[#FFAE07]">
                       Nous Contacter
