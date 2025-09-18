@@ -94,7 +94,7 @@ export function TestimonialSlider() {
                   <div className="text-sm text-orange-600">{testimonial.role}</div>
                 </div>
               </div>
-              <p className="text-gray-600 mb-4 flex-grow">"{testimonial.content}"</p>
+              <p className="text-gray-600 mb-4 flex-grow">&quot;{testimonial.content}&quot;</p>
               <div className="flex items-center">
                 <div className="flex">
                   {renderStars(testimonial.rating)}
