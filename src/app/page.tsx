@@ -72,7 +72,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
       {/* Header */}
-      <header className="border-b bg-white backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+      <header className="bg-white backdrop-blur-sm sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <nav className="flex items-center justify-between">
             <div className="flex items-center">
@@ -82,18 +82,18 @@ export default function HomePage() {
             {/* Menu Desktop */}
             <div className="hidden md:flex items-center space-x-8">
               <div className="flex items-center space-x-8">
-                <Link href="#activites" className="text-gray-700 hover:text-orange-600 transition-colors font-medium text-sm md:text-base">
+                <Link href="#activites" className="text-black hover:text-[#FC9804] transition-colors font-medium text-sm md:text-base">
                   Activités
                 </Link>
-                <Link href="#temoignages" className="text-gray-700 hover:text-orange-600 transition-colors font-medium text-sm md:text-base">
+                <Link href="#temoignages" className="text-black hover:text-[#FC9804] transition-colors font-medium text-sm md:text-base">
                   Témoignages
                 </Link>
-                <Link href="#contact" className="text-gray-700 hover:text-orange-600 transition-colors font-medium text-sm md:text-base">
+                <Link href="#contact" className="text-black hover:text-[#FC9804] transition-colors font-medium text-sm md:text-base">
                   Contact
                 </Link>
               </div>
               <Link href="/rejoindre" className="ml-4">
-                <Button className="bg-orange-600 hover:bg-orange-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-orange-600 text-sm md:text-base">
+                <Button className="bg-[#FC9804] hover:bg-[#FFAE07] text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-[#FC9804] text-sm md:text-base">
                   Nous Rejoindre
                 </Button>
               </Link>
@@ -110,7 +110,7 @@ export default function HomePage() {
                     mobileMenu.classList.toggle('hidden');
                   }
                 }}
-                className="text-gray-700 hover:bg-orange-50"
+                className="text-black hover:bg-white/10"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
@@ -156,8 +156,8 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-8 sm:py-12 md:py-20 lg:py-28 bg-gradient-to-br from-orange-50 via-yellow-50 to-white relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
+      <section className="py-8 sm:py-12 md:py-20 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-10">
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -165,22 +165,22 @@ export default function HomePage() {
             <div className="space-y-6 md:space-y-8 order-1 lg:order-1">
               {/* Heading and Description */}
               <div className="space-y-4 sm:space-y-6 text-center lg:text-left">
-                <Badge className="bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200 transition-colors text-xs sm:text-sm inline-flex mx-auto lg:mx-0">
+                <Badge className="bg-[#FC9804]/10 text-[#FC9804] border-[#FC9804]/20 hover:bg-[#FC9804]/20 transition-colors text-xs sm:text-sm inline-flex mx-auto lg:mx-0">
                   <Target className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-1.5 flex-shrink-0" />
                   <span className="truncate sm:whitespace-normal">Nouvelle Année Universitaire 2025-2026</span>
                 </Badge>
 
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
-                  <span className="block text-gray-900 mb-1 sm:mb-2">Rejoignez le Club</span>
-                  <span className="block bg-gradient-to-r from-orange-600 via-yellow-600 to-orange-600 bg-clip-text text-transparent">
+                  <span className="block text-black mb-1 sm:mb-2">Rejoignez le Club</span>
+                  <span className="block text-[#FC9804]">
                     {displayedText}
                     {isTyping && displayedText.length < 6 && (
-                      <span className="animate-pulse text-orange-400">|</span>
+                      <span className="animate-pulse text-[#FFAE07]">|</span>
                     )}
                   </span>
                 </h1>
 
-                <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed text-pretty max-w-2xl mx-auto lg:mx-0">
+                <p className="text-base sm:text-lg md:text-xl text-black/80 leading-relaxed text-pretty max-w-2xl mx-auto lg:mx-0">
                   Une initiative révolutionnaire à la FST qui inspire, éduque et soutient les étudiants dans leur
                   développement personnel et professionnel à travers la créativité et la communication.
                 </p>
@@ -196,7 +196,7 @@ export default function HomePage() {
                 <Link href="/rejoindre" className="w-full sm:w-auto">
                   <Button
                     size="lg"
-                    className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white group shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm sm:text-base"
+                    className="w-full sm:w-auto bg-[#FC9804] hover:bg-[#FFAE07] text-white group shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm sm:text-base"
                   >
                     <Sparkles className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                     Rejoindre le Club
@@ -206,7 +206,7 @@ export default function HomePage() {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="border-orange-200 hover:bg-orange-50 bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300"
+                  className="border-[#FC9804]/30 hover:bg-white/10 bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300"
                   onClick={() => setIsVideoOpen(true)}
                 >
                   <Play className="mr-2 h-4 w-4" />
@@ -216,30 +216,30 @@ export default function HomePage() {
 
               <div className="flex items-center justify-between xs:justify-start xs:gap-4 sm:gap-8 pt-4 sm:pt-6">
                 <div className="text-center group min-w-0 flex-1 xs:flex-initial">
-                  <div className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-[#FC9804] group-hover:scale-110 transition-transform duration-300">
                     50+
                   </div>
-                  <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
+                  <div className="text-xs sm:text-sm text-black/70 font-medium leading-tight">
                     <span className="block xs:hidden">Membres</span>
                     <span className="hidden xs:block">Membres Actifs</span>
                   </div>
                 </div>
-                <Separator orientation="vertical" className="h-8 sm:h-12 bg-orange-200 flex-shrink-0" />
+                <Separator orientation="vertical" className="h-8 sm:h-12 bg-[#FC9804]/30 flex-shrink-0" />
                 <div className="text-center group min-w-0 flex-1 xs:flex-initial">
-                  <div className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-[#FC9804] group-hover:scale-110 transition-transform duration-300">
                     20+
                   </div>
-                  <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
+                  <div className="text-xs sm:text-sm text-black/70 font-medium leading-tight">
                     <span className="block xs:hidden">Événements</span>
                     <span className="hidden xs:block">Événements/An</span>
                   </div>
                 </div>
-                <Separator orientation="vertical" className="h-8 sm:h-12 bg-orange-200 flex-shrink-0" />
+                <Separator orientation="vertical" className="h-8 sm:h-12 bg-[#FC9804]/30 flex-shrink-0" />
                 <div className="text-center group min-w-0 flex-1 xs:flex-initial">
-                  <div className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-xl xs:text-2xl sm:text-3xl font-bold text-[#FC9804] group-hover:scale-110 transition-transform duration-300">
                     5
                   </div>
-                  <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
+                  <div className="text-xs sm:text-sm text-black/70 font-medium leading-tight">
                     <span className="block xs:hidden">Domaines</span>
                     <span className="hidden xs:block">Domaines d'Expertise</span>
                   </div>

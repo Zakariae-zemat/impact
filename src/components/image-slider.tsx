@@ -52,19 +52,6 @@ export default function ImageSlider() {
           </div>
         )
       })}
-      {/* Navigation dots */}
-      <div className="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 z-20">
-        {images.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-orange-600 w-6' : 'bg-orange-300'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
     </div>
   )
 }

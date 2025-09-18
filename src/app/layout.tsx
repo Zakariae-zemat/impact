@@ -16,7 +16,9 @@ export const metadata: Metadata = {
   title: 'IMPACT Club',
   description: 'Club étudiant de la FST - Développement personnel et professionnel à travers la créativité et la communication',
   icons: {
-    icon: '/icon.png',
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/icon.png',
   },
   openGraph: {
     title: 'IMPACT Club - FST',

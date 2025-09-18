@@ -55,11 +55,12 @@ export default function RejoindreClub() {
   })
 
   const activities = [
-    { id: "photo", name: "Photographie", icon: Camera, color: "bg-orange-100 text-orange-700" },
-    { id: "podcast", name: "Podcasts", icon: Mic, color: "bg-yellow-100 text-yellow-700" },
-    { id: "journalisme", name: "Journalisme", icon: PenTool, color: "bg-blue-100 text-blue-700" },
-    { id: "video", name: "Montage Vidéo", icon: Video, color: "bg-green-100 text-green-700" },
-    { id: "oratoire", name: "Art Oratoire", icon: Users, color: "bg-purple-100 text-purple-700" },
+    { id: "photo", name: "Photographie", icon: Camera, color: "bg-[#FC9804]/10 text-[#FC9804]" },
+    { id: "podcast", name: "Podcasts", icon: Mic, color: "bg-[#FFAE07]/10 text-[#FFAE07]" },
+    { id: "Design", name: "Design", icon: PenTool, color: "bg-[#FC9804]/10 text-[#FC9804]" },
+    { id: "video", name: "Montage Vidéo", icon: Video, color: "bg-[#FFAE07]/10 text-[#FFAE07]" },
+    { id: "oratoire", name: "Art Oratoire", icon: Users, color: "bg-[#FC9804]/10 text-[#FC9804]" },
+    { id: "Communication", name: "Communication", icon: Users, color: "bg-[#FC9804]/10 text-[#FC9804]" },
   ]
 
   const toggleActivity = (activityId: string) => {
@@ -76,22 +77,22 @@ export default function RejoindreClub() {
 
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <Card className="max-w-md w-full text-center border-primary/20">
+      <div className="min-h-screen bg-white flex items-center justify-center p-4">
+        <Card className="max-w-md w-full border-[#FC9804]/20">
           <CardContent className="pt-8 pb-6">
-            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-8 h-8 text-primary" />
+            <div className="w-16 h-16 bg-[#FC9804]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="w-8 h-8 text-[#FC9804]" />
             </div>
-            <h2 className="text-2xl font-bold text-foreground mb-4">Candidature Envoyée !</h2>
-            <p className="text-muted-foreground mb-6 text-pretty">
+            <h2 className="text-2xl font-bold text-black mb-4">Candidature Envoyée !</h2>
+            <p className="text-black/70 mb-6">
               Merci pour votre intérêt ! Nous examinerons votre candidature et vous contacterons bientôt pour la suite
               du processus.
             </p>
             <div className="space-y-3">
-              <Link href="/">
-                <Button className="w-full bg-primary hover:bg-primary/90 text-white">Retour à l'Accueil</Button>
+              <Link href="/" className="block w-full">
+                <Button className="w-full bg-[#FC9804] hover:bg-[#FFAE07] text-white">Retour à l'Accueil</Button>
               </Link>
-              <p className="text-sm text-muted-foreground">Suivez-nous sur nos réseaux sociaux pour rester informé !</p>
+              <p className="text-sm text-black/50">Suivez-nous sur nos réseaux sociaux pour rester informé !</p>
             </div>
           </CardContent>
         </Card>
@@ -100,13 +101,13 @@ export default function RejoindreClub() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
-              <ArrowLeft className="w-5 h-5 text-muted-foreground" />
+              <ArrowLeft className="w-5 h-5 text-black/50" />
               <div className="flex items-center gap-3">
               <div className="flex items-center">
               <img className="h-12 w-auto" src="logo-light.png" alt="Logo Impact" />
@@ -121,9 +122,9 @@ export default function RejoindreClub() {
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
           <div className="text-center space-y-4 mb-12">
-            <Badge className="bg-primary/10 text-primary border-primary/20">🚀 Rejoignez l'Aventure</Badge>
-            <h1 className="text-3xl lg:text-4xl font-bold text-foreground text-balance">Candidature Club IMPACT</h1>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
+            <Badge className="bg-[#FC9804]/10 text-[#FC9804] border-[#FC9804]/20">🚀 Rejoignez l'Aventure</Badge>
+            <h1 className="text-3xl lg:text-4xl font-bold text-black text-balance">Candidature Club IMPACT</h1>
+            <p className="text-xl text-black/50 max-w-2xl mx-auto">
               Prêt à développer vos talents et rejoindre une communauté dynamique ? Remplissez ce formulaire pour
               commencer votre parcours avec nous !
             </p>
@@ -132,10 +133,10 @@ export default function RejoindreClub() {
           <div className="grid lg:grid-cols-3 gap-8">
             {/* Form */}
             <div className="lg:col-span-2">
-              <Card className="border-primary/10">
+              <Card className="border-[#FC9804]/20">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-foreground">
-                    <User className="w-5 h-5 text-primary" />
+                  <CardTitle className="flex items-center gap-2 text-black">
+                    <User className="w-5 h-5 text-[#FC9804]" />
                     Informations Personnelles
                   </CardTitle>
                   <CardDescription>
@@ -207,8 +208,8 @@ export default function RejoindreClub() {
                       {/* Academic Info */}
                       <Separator />
                       <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                          <GraduationCap className="w-5 h-5 text-primary" />
+                        <h3 className="text-lg font-semibold text-black flex items-center gap-2">
+                          <GraduationCap className="w-5 h-5 text-[#FC9804]" />
                           Informations Académiques
                         </h3>
 
@@ -221,7 +222,7 @@ export default function RejoindreClub() {
                                 <FormLabel>Niveau d'Études *</FormLabel>
                                 <FormControl>
                                   <select
-                                    className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                    className="flex h-9 w-full rounded-md border border-black/20 bg-transparent px-3 py-1 text-base shadow-xs transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-black/50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#FC9804] disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
                                     {...field}
                                     required
                                   >
@@ -231,7 +232,9 @@ export default function RejoindreClub() {
                                     <option value="L3">Licence 3</option>
                                     <option value="M1">Master 1</option>
                                     <option value="M2">Master 2</option>
-                                    <option value="Doctorat">Doctorat</option>
+                                    <option value="M1">Cycle 1</option>
+                                    <option value="M2">Cycle 2</option>
+                                    <option value="M1">Cycle 3</option>
                                   </select>
                                 </FormControl>
                                 <FormMessage />
@@ -257,11 +260,11 @@ export default function RejoindreClub() {
                       {/* Activities Selection */}
                       <Separator />
                       <div className="space-y-4">
-                        <h3 className="text-lg font-semibold text-foreground flex items-center gap-2">
-                          <Heart className="w-5 h-5 text-primary" />
+                        <h3 className="text-lg font-semibold text-black flex items-center gap-2">
+                          <Heart className="w-5 h-5 text-[#FC9804]" />
                           Activités d'Intérêt
                         </h3>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-black/50">
                           Sélectionnez les activités qui vous intéressent le plus (plusieurs choix possibles) :
                         </p>
 
@@ -275,7 +278,7 @@ export default function RejoindreClub() {
                                 type="button"
                                 onClick={() => toggleActivity(activity.id)}
                                 className={`p-4 rounded-lg border-2 transition-all text-left ${
-                                  isSelected ? "border-primary bg-primary/5" : "border-border hover:border-primary/50"
+                                  isSelected ? "border-[#FC9804] bg-[#FC9804]/5" : "border-black/10 hover:border-[#FC9804]/50"
                                 }`}
                               >
                                 <div className="flex items-center gap-3">
@@ -285,9 +288,9 @@ export default function RejoindreClub() {
                                     <Icon className="w-5 h-5" />
                                   </div>
                                   <div>
-                                    <div className="font-medium text-foreground">{activity.name}</div>
+                                    <div className="font-medium text-black">{activity.name}</div>
                                     {isSelected && (
-                                      <div className="text-xs text-primary font-medium">✓ Sélectionné</div>
+                                      <div className="text-xs text-[#FC9804] font-medium">✓ Sélectionné</div>
                                     )}
                                   </div>
                                 </div>
@@ -342,7 +345,7 @@ export default function RejoindreClub() {
                         )}
                       />
 
-                      <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-white">
+                      <Button type="submit" size="lg" className="bg-[#FC9804] hover:bg-[#FFAE07] text-white">
                         Envoyer ma Candidature
                       </Button>
                     </form>
@@ -353,14 +356,14 @@ export default function RejoindreClub() {
 
             {/* Sidebar */}
             <div className="space-y-6">
-              <Card className="border-primary/10">
+              <Card className="border-[#FC9804]/20">
                 <CardHeader>
-                  <CardTitle className="text-foreground">Pourquoi Nous Rejoindre ?</CardTitle>
+                  <CardTitle className="text-black">Pourquoi Nous Rejoindre ?</CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-primary font-bold text-sm">1</span>
+                    <div className="w-8 h-8 bg-[#FC9804]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-[#FC9804] font-bold text-sm">1</span>
                     </div>
                     <div>
                       <h4 className="font-medium text-foreground">Développement Personnel</h4>
@@ -371,8 +374,8 @@ export default function RejoindreClub() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-primary font-bold text-sm">2</span>
+                    <div className="w-8 h-8 bg-[#FC9804]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-[#FC9804] font-bold text-sm">2</span>
                     </div>
                     <div>
                       <h4 className="font-medium text-foreground">Réseau Professionnel</h4>
@@ -383,8 +386,8 @@ export default function RejoindreClub() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <span className="text-primary font-bold text-sm">3</span>
+                    <div className="w-8 h-8 bg-[#FC9804]/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <span className="text-[#FC9804] font-bold text-sm">3</span>
                     </div>
                     <div>
                       <h4 className="font-medium text-foreground">Expérience Pratique</h4>
@@ -396,17 +399,17 @@ export default function RejoindreClub() {
                 </CardContent>
               </Card>
 
-              <Card className="border-primary/10 bg-gradient-to-br from-accent/10 to-primary/5">
+              <Card className="border-[#FC9804]/20 bg-gradient-to-br from-[#FC9804]/5 to-[#FFAE07]/5">
                 <CardContent className="pt-6">
                   <div className="text-center space-y-3">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
-                      <Mail className="w-6 h-6 text-primary" />
+                    <div className="w-12 h-12 bg-[#FC9804]/10 rounded-full flex items-center justify-center mx-auto">
+                      <Mail className="w-6 h-6 text-[#FC9804]" />
                     </div>
                     <h4 className="font-semibold text-foreground">Questions ?</h4>
                     <p className="text-sm text-muted-foreground">
                       N'hésitez pas à nous contacter pour plus d'informations
                     </p>
-                    <Button variant="outline" size="sm" className="border-primary/20 hover:bg-primary/5 bg-transparent">
+                    <Button variant="outline" size="sm" className="border-[#FC9804]/30 hover:bg-[#FC9804]/10 bg-transparent text-[#FC9804] hover:text-[#FFAE07]">
                       Nous Contacter
                     </Button>
                   </div>
