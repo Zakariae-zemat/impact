@@ -3,10 +3,11 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 import {
@@ -22,26 +23,33 @@ import {
   Video,
   Users,
 } from "lucide-react"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-import { useForm } from "react-hook-form"
+import { Input } from "@/components/ui/input"
+import { Form } from "@/components/ui/form"
+import { Textarea } from "@/components/ui/textarea"
 
-type FormData = {
-  prenom: string
-  nom: string
-  email: string
-  telephone: string
-  niveau: string
-  filiere: string
-  activites: string[]
-  motivation: string
-  experience: string
-}
+// Destructure form components from the Form object
+const { Field: FormField, Item: FormItem, Label: FormLabel, Control: FormControl, Message: FormMessage, Description: FormDescription } = Form
+
+const formSchema = z.object({
+  prenom: z.string().min(2, { message: "Le prénom doit contenir au moins 2 caractères" }),
+  nom: z.string().min(2, { message: "Le nom doit contenir au moins 2 caractères" }),
+  email: z.string().email({ message: "Veuillez entrer une adresse email valide" }),
+  telephone: z.string().min(10, { message: "Le numéro de téléphone doit contenir au moins 10 chiffres" }),
+  niveau: z.string().min(1, { message: "Veuillez sélectionner votre niveau d'études" }),
+  filiere: z.string().min(2, { message: "Veuillez entrer votre filière" }),
+  activites: z.array(z.string()).min(1, { message: "Veuillez sélectionner au moins une activité" }),
+  motivation: z.string().min(50, { message: "Votre motivation doit contenir au moins 50 caractères" }),
+  experience: z.string().optional(),
+})
+
+type FormData = z.infer<typeof formSchema>
 
 export default function RejoindreClub() {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [selectedActivities, setSelectedActivities] = useState<string[]>([])
 
   const form = useForm<FormData>({
+    resolver: zodResolver(formSchema),
     defaultValues: {
       prenom: "",
       nom: "",
@@ -65,15 +73,29 @@ export default function RejoindreClub() {
   ]
 
   const toggleActivity = (activityId: string) => {
-    setSelectedActivities((prev) =>
-      prev.includes(activityId) ? prev.filter((id) => id !== activityId) : [...prev, activityId],
-    )
+    const newActivities = selectedActivities.includes(activityId)
+      ? selectedActivities.filter((id) => id !== activityId)
+      : [...selectedActivities, activityId]
+    
+    setSelectedActivities(newActivities)
+    form.setValue('activites', newActivities, { shouldValidate: true })
   }
 
-  const onSubmit = (data: FormData) => {
-    // Simulate form submission
-    console.log({ ...data, activites: selectedActivities })
-    setIsSubmitted(true)
+  const onSubmit = async (data: FormData) => {
+    try {
+      // Here you would typically send the data to your API
+      console.log('Form submitted:', data)
+      // Example API call:
+      // await fetch('/api/join', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(data),
+      // })
+      setIsSubmitted(true)
+    } catch (error) {
+      console.error('Error submitting form:', error)
+      // Handle error (e.g., show error message to user)
+    }
   }
 
   if (isSubmitted) {
@@ -104,21 +126,18 @@ export default function RejoindreClub() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="border-b bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
+      <header className="bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-4 hover:opacity-80 transition-opacity">
               <ArrowLeft className="w-5 h-5 text-black/50" />
               <div className="flex items-center gap-3">
               <div className="flex items-center">
-              <Image 
-                src="/logo-light.png" 
+              <img src="/logo-light.png" 
                 alt="Logo Impact" 
                 width={48} 
                 height={48} 
-                className="h-12 w-auto"
-                priority
-              />
+                className="h-12 w-auto" />
             </div>
               </div>
             </Link>
@@ -163,7 +182,7 @@ export default function RejoindreClub() {
                             <FormItem>
                               <FormLabel>Prénom *</FormLabel>
                               <FormControl>
-                                <Input placeholder="Votre prénom" {...field} required />
+                                <Input placeholder="Votre prénom" {...field} />
                               </FormControl>
                               <FormMessage />
                             </FormItem>
@@ -256,7 +275,7 @@ export default function RejoindreClub() {
                               <FormItem>
                                 <FormLabel>Filière *</FormLabel>
                                 <FormControl>
-                                  <Input placeholder="Ex: Informatique, Mathématiques..." {...field} required />
+                                  <input placeholder="Ex: Informatique, Mathématiques..." {...field} required />
                                 </FormControl>
                                 <FormMessage />
                               </FormItem>

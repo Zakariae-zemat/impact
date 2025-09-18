@@ -1,12 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
-import Image from "next/image"
+import ImageSlider from "@/components/image-slider"
+import VideoPopup from "@/components/video-popup"
 import {
   Camera,
   Mic,
@@ -17,7 +18,7 @@ import {
   Play,
   BookOpen,
   Megaphone,
-  Video as VideoIcon,
+  Video,
   Target,
   Rocket,
   MessageCircle,
@@ -27,15 +28,46 @@ import {
   Sparkles,
   Zap,
   Heart,
-  Video,
 } from "lucide-react"
 
 import { TestimonialSlider } from "@/components/testimonial-slider"
-import HeroSection from "@/components/HeroSection"
-import VideoPopup from "@/components/video-popup"
 
 export default function HomePage() {
   const [isVideoOpen, setIsVideoOpen] = useState(false)
+  
+  // Typewriter animation state
+  const [displayedText, setDisplayedText] = useState("")
+  const [isTyping, setIsTyping] = useState(true)
+
+  useEffect(() => {
+    const text = "IMPACT"
+    let currentIndex = 0
+    let timeoutId: NodeJS.Timeout | null = null
+    let animationTimeoutId: NodeJS.Timeout | null = null
+
+    const typeNext = () => {
+      if (currentIndex < text.length) {
+        setDisplayedText(text.slice(0, currentIndex + 1))
+        currentIndex++
+        timeoutId = setTimeout(typeNext, 200)
+      } else {
+        setIsTyping(false)
+        animationTimeoutId = setTimeout(() => {
+          setDisplayedText("")
+          setIsTyping(true)
+          currentIndex = 0
+          typeNext()
+        }, 3000)
+      }
+    }
+
+    typeNext()
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId)
+      if (animationTimeoutId) clearTimeout(animationTimeoutId)
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-background overflow-x-hidden">
@@ -44,31 +76,24 @@ export default function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <nav className="flex items-center justify-between">
             <div className="flex items-center">
-              <Image 
-                src="/logo-light.png" 
-                alt="Logo Impact" 
-                width={48} 
-                height={48} 
-                className="h-12 w-auto"
-                priority
-              />
+              <img className="h-12 w-auto" src="logo-light.png" alt="Logo Impact" />
             </div>
             
             {/* Menu Desktop */}
             <div className="hidden md:flex items-center space-x-8">
               <div className="flex items-center space-x-8">
-                <Link href="#activites" className="text-black hover:text-[#FC9804] transition-colors font-medium text-sm md:text-base">
+                <Link href="#activites" className="text-gray-700 hover:text-orange-600 transition-colors font-medium text-sm md:text-base">
                   Activités
                 </Link>
-                <Link href="#temoignages" className="text-black hover:text-[#FC9804] transition-colors font-medium text-sm md:text-base">
+                <Link href="#temoignages" className="text-gray-700 hover:text-orange-600 transition-colors font-medium text-sm md:text-base">
                   Témoignages
                 </Link>
-                <Link href="#contact" className="text-black hover:text-[#FC9804] transition-colors font-medium text-sm md:text-base">
+                <Link href="#contact" className="text-gray-700 hover:text-orange-600 transition-colors font-medium text-sm md:text-base">
                   Contact
                 </Link>
               </div>
               <Link href="/rejoindre" className="ml-4">
-                <Button className="bg-[#FC9804] hover:bg-[#FFAE07] text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-[#FC9804] text-sm md:text-base">
+                <Button className="bg-orange-600 hover:bg-orange-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-orange-600 text-sm md:text-base">
                   Nous Rejoindre
                 </Button>
               </Link>
@@ -85,7 +110,7 @@ export default function HomePage() {
                     mobileMenu.classList.toggle('hidden');
                   }
                 }}
-                className="text-black hover:bg-white/10"
+                className="text-gray-700 hover:bg-orange-50"
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
@@ -131,9 +156,98 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <HeroSection />
+      <section className="py-8 sm:py-12 md:py-20 lg:py-28 bg-gradient-to-br from-orange-50 via-yellow-50 to-white relative overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-20">
+          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
+            <div className="space-y-4 sm:space-y-6 md:space-y-8 order-2 lg:order-1">
+              <div className="space-y-3 sm:space-y-4 md:space-y-6">
+                <Badge className="bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200 transition-colors text-xs sm:text-sm inline-flex">
+                  <Target className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-1.5 flex-shrink-0" />
+                  <span className="truncate sm:whitespace-normal">Nouvelle Année Universitaire 2025-2026</span>
+                </Badge>
 
-      <VideoPopup isOpen={isVideoOpen} onClose={() => setIsVideoOpen(false)} videoSrc="/club-impact-presentation.mp4" />
+                <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
+                  <span className="block text-gray-900 mb-1 sm:mb-2">Rejoignez le Club</span>
+                  <span className="block bg-gradient-to-r from-orange-600 via-yellow-600 to-orange-600 bg-clip-text text-transparent">
+                    {displayedText}
+                    {isTyping && displayedText.length < 6 && (
+                      <span className="animate-pulse text-orange-400">|</span>
+                    )}
+                  </span>
+                </h1>
+
+                <p className="text-sm xs:text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed text-pretty max-w-none lg:max-w-2xl">
+                  Une initiative révolutionnaire à la FST qui inspire, éduque et soutient les étudiants dans leur
+                  développement personnel et professionnel à travers la créativité et la communication.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Link href="/rejoindre" className="w-full sm:w-auto">
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white group shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm sm:text-base"
+                  >
+                    <Sparkles className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                    Rejoindre le Club
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                </Link>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="border-orange-200 hover:bg-orange-50 bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300"
+                  onClick={() => setIsVideoOpen(true)}
+                >
+                  <Play className="mr-2 h-4 w-4" />
+                  Savoir Plus
+                </Button>
+              </div>
+
+              <div className="flex items-center justify-between xs:justify-start xs:gap-4 sm:gap-8 pt-4 sm:pt-6">
+                <div className="text-center group min-w-0 flex-1 xs:flex-initial">
+                  <div className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                    50+
+                  </div>
+                  <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
+                    <span className="block xs:hidden">Membres</span>
+                    <span className="hidden xs:block">Membres Actifs</span>
+                  </div>
+                </div>
+                <Separator orientation="vertical" className="h-8 sm:h-12 bg-orange-200 flex-shrink-0" />
+                <div className="text-center group min-w-0 flex-1 xs:flex-initial">
+                  <div className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                    20+
+                  </div>
+                  <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
+                    <span className="block xs:hidden">Événements</span>
+                    <span className="hidden xs:block">Événements/An</span>
+                  </div>
+                </div>
+                <Separator orientation="vertical" className="h-8 sm:h-12 bg-orange-200 flex-shrink-0" />
+                <div className="text-center group min-w-0 flex-1 xs:flex-initial">
+                  <div className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
+                    5
+                  </div>
+                  <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
+                    <span className="block xs:hidden">Domaines</span>
+                    <span className="hidden xs:block">Domaines d'Expertise</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="order-1 lg:order-2 w-full">
+              <ImageSlider />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <VideoPopup isOpen={isVideoOpen} onClose={() => setIsVideoOpen(false)} />
       
       {/* Activities Section */}
       <section id="activites" className="py-20 bg-white">
@@ -141,7 +255,7 @@ export default function HomePage() {
           <div className="text-center space-y-6 mb-16">
             <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200 text-lg px-4 py-2">
               <Rocket className="w-5 h-5 mr-2" />
-              Nos Domaines d&apos;Excellence
+              Nos Domaines d'Excellence
             </Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 text-balance">
               Développez vos Talents avec
@@ -150,7 +264,7 @@ export default function HomePage() {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto text-pretty leading-relaxed">
-              Découvrez nos domaines d&apos;expertise qui vous permettront de développer vos compétences et votre
+              Découvrez nos domaines d'expertise qui vous permettront de développer vos compétences et votre
               créativité dans un environnement stimulant et innovant.
             </p>
           </div>
@@ -166,22 +280,17 @@ export default function HomePage() {
                   Photographie
                 </CardTitle>
                 <CardDescription className="text-gray-600 leading-relaxed">
-                  Maîtrisez l&apos;art de capturer les moments avec des ateliers pratiques animés par des professionnels
+                  Maîtrisez l'art de capturer les moments avec des ateliers pratiques animés par des professionnels
                   expérimentés et passionnés.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="aspect-video rounded-xl border border-orange-200 overflow-hidden group-hover:scale-105 transition-transform duration-500 shadow-inner">
-                  <div className="relative w-full h-full">
-                    <Image
-                      src="/IMG_9967.jpg"
-                      alt="Atelier de photographie"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
+                  <img 
+                    src="/IMG_9967.jpg" 
+                    alt="Atelier de photographie" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -202,16 +311,11 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <div className="aspect-video rounded-xl border border-yellow-200 overflow-hidden group-hover:scale-105 transition-transform duration-500 shadow-inner">
-                  <div className="relative w-full h-full">
-                    <Image
-                      src="/IMG_0350.JPG"
-                      alt="Atelier de prise de parole"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
+                  <img 
+                    src="/IMG_0350.JPG" 
+                    alt="Atelier de prise de parole" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -226,22 +330,17 @@ export default function HomePage() {
                   Design
                 </CardTitle>
                 <CardDescription className="text-gray-600 leading-relaxed">
-                  Découvrez l&apos;univers du design graphique et développez vos compétences créatives avec nos ateliers
+                  Découvrez l'univers du design graphique et développez vos compétences créatives avec nos ateliers
                   pratiques et projets concrets.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="aspect-video rounded-xl border border-orange-200 overflow-hidden group-hover:scale-105 transition-transform duration-500 shadow-inner">
-                  <div className="relative w-full h-full">
-                    <Image
-                      src="/IMG_4866.JPG"
-                      alt="Atelier de design"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
+                  <img 
+                    src="/IMG_4866.JPG" 
+                    alt="Atelier de design" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -256,22 +355,17 @@ export default function HomePage() {
                   Podcasts et Interviews
                 </CardTitle>
                 <CardDescription className="text-gray-600 leading-relaxed">
-                  Participez à nos podcasts passionnants couvrant l&apos;orientation post-universitaire, les événements et
-                  l&apos;actualité étudiante.
+                  Participez à nos podcasts passionnants couvrant l'orientation post-universitaire, les événements et
+                  l'actualité étudiante.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="aspect-video rounded-xl border border-yellow-200 overflow-hidden group-hover:scale-105 transition-transform duration-500 shadow-inner">
-                  <div className="relative w-full h-full">
-                    <Image
-                      src="/IMG_0018.JPG"
-                      alt="Studio podcast"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
+                  <img 
+                    src="/IMG_0018.JPG" 
+                    alt="Studio podcast" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -292,16 +386,11 @@ export default function HomePage() {
               </CardHeader>
               <CardContent>
                 <div className="aspect-video rounded-xl border border-orange-200 overflow-hidden group-hover:scale-105 transition-transform duration-500 shadow-inner">
-                  <div className="relative w-full h-full">
-                    <Image
-                      src="/IMG_1163.JPG"
-                      alt="Équipe vidéo"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
+                  <img 
+                    src="/IMG_1163.JPG" 
+                    alt="Équipe vidéo" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -317,21 +406,16 @@ export default function HomePage() {
                 </CardTitle>
                 <CardDescription className="text-gray-600 leading-relaxed">
                   Rejoignez une communauté dynamique où innovation, médiatisation et communication se rencontrent pour
-                  créer l&apos;impact positif.
+                  créer l'impact positif.
                 </CardDescription>
               </CardHeader>
               <CardContent>
               <div className="aspect-video rounded-xl border border-orange-200 overflow-hidden group-hover:scale-105 transition-transform duration-500 shadow-inner">
-                  <div className="relative w-full h-full">
-                    <Image
-                      src="/IMG_0428.JPG"
-                      alt="Équipe vidéo"
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
-                      priority
-                    />
-                  </div>
+                  <img 
+                    src="/IMG_0428.JPG" 
+                    alt="Équipe vidéo" 
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </CardContent>
             </Card>
@@ -381,8 +465,8 @@ export default function HomePage() {
               <span className="block">Dynamique et Inspirante ?</span>
             </h2>
             <p className="text-xl text-white/90 text-pretty max-w-3xl mx-auto leading-relaxed">
-              Ne manquez pas cette opportunité exceptionnelle de grandir, d&apos;apprendre, de positiver et de partager vos
-              idées créatives. Votre parcours d&apos;excellence commence maintenant !
+              Ne manquez pas cette opportunité exceptionnelle de grandir, d'apprendre, de positiver et de partager vos
+              idées créatives. Votre parcours d'excellence commence maintenant !
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
               <Link href="/rejoindre">
@@ -414,19 +498,11 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-12">
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-<div className="relative w-32 h-12">
-                    <Image
-                      src="/logo.png"
-                      alt="Logo IMPACT"
-                      fill
-                      sizes="128px"
-                      className="object-contain"
-                    />
-                  </div>
+                  <img className="w-32 h-12" src="logo.png" alt="" />
               </div>
               <p className="text-gray-300 text-pretty leading-relaxed">
                 Une initiative révolutionnaire qui inspire, éduque et soutient les étudiants dans leur développement
-                personnel et professionnel à travers l&apos;innovation et la créativité.
+                personnel et professionnel à travers l'innovation et la créativité.
               </p>
             </div>
 

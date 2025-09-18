@@ -1,159 +1,136 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useCallback } from "react"
 import Link from "next/link"
-import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Separator } from "@/components/ui/separator"
-import { Target, Sparkles, ArrowRight, Play } from "lucide-react"
-import ImageSlider from "./image-slider"
+import { Badge } from "@/components/ui/badge"
+import { ArrowRight, Play, Star } from "lucide-react"
 import dynamic from 'next/dynamic'
 
-// Dynamically import VideoPopup to avoid SSR issues
 const VideoPopup = dynamic(() => import('@/components/video-popup'), {
   ssr: false
 })
 
 export default function HeroSection() {
-  const [isVideoOpen, setIsVideoOpen] = useState<boolean>(false);
-  // Typewriter animation state
-  const [displayedText, setDisplayedText] = useState("")
-  const [isTyping, setIsTyping] = useState(true)
-
-  const handleCloseVideo = useCallback(() => {
-    setIsVideoOpen(false);
-  }, []);
+  const [isVideoOpen, setIsVideoOpen] = useState(false)
 
   const handleOpenVideo = useCallback(() => {
-    setIsVideoOpen(true);
-  }, []);
+    setIsVideoOpen(true)
+  }, [])
 
-  useEffect(() => {
-    const text = "IMPACT"
-    let currentIndex = 0
-    let timeoutId: NodeJS.Timeout | null = null
-
-    const typeNext = () => {
-      if (currentIndex < text.length) {
-        setDisplayedText(text.slice(0, currentIndex + 1))
-        currentIndex++
-        timeoutId = setTimeout(typeNext, 200)
-      } else {
-        setIsTyping(false)
-        timeoutId = setTimeout(() => {
-          setDisplayedText("")
-          setIsTyping(true)
-          currentIndex = 0
-          typeNext()
-        }, 3000)
-      }
-    }
-
-    typeNext()
-
-    return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-        timeoutId = null;
-      }
-    }
+  const handleCloseVideo = useCallback(() => {
+    setIsVideoOpen(false)
   }, [])
 
   return (
-    <>
-      {/* Hero Section - Mobile First Responsive */}
-      <section className="py-8 sm:py-12 md:py-20 lg:py-28 bg-gradient-to-br from-orange-50 via-yellow-50 to-white relative overflow-hidden">
-  <div className="absolute inset-0 z-0 opacity-20">
-    <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-  </div>
-  <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
-      <div className="space-y-4 sm:space-y-6 md:space-y-8 order-2 lg:order-1">
-        <div className="space-y-3 sm:space-y-4 md:space-y-6">
-          <Badge className="bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200 transition-colors text-xs sm:text-sm inline-flex">
-            <Target className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-1.5 flex-shrink-0" />
-            <span className="truncate sm:whitespace-normal">Nouvelle Année Universitaire 2024-2025</span>
-          </Badge>
+    <section className="py-8 sm:py-12 md:py-20 lg:py-28 bg-gradient-to-br from-orange-50 via-yellow-50 to-white relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-orange-100 rounded-full filter blur-3xl opacity-20 -mr-20 -mt-20"></div>
+        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-yellow-100 rounded-full filter blur-3xl opacity-20 -ml-40 -mb-40"></div>
+      </div>
 
-          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
-            <span className="block text-gray-900 mb-1 sm:mb-2">Rejoignez le Club</span>
-            <span className="block bg-gradient-to-r from-orange-600 via-yellow-600 to-orange-600 bg-clip-text text-transparent">
-              {displayedText}
-              {isTyping && displayedText.length < 6 && (
-                <span className="animate-pulse text-orange-400">|</span>
-              )}
-            </span>
-          </h1>
-
-          <p className="text-sm xs:text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed text-pretty max-w-none lg:max-w-2xl">
-            Une initiative révolutionnaire à la FST qui inspire, éduque et soutient les étudiants dans leur
-            développement personnel et professionnel à travers la créativité et la communication.
-          </p>
-        </div>
-
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-          <Link href="/rejoindre" className="w-full sm:w-auto">
-            <Button
-              size="lg"
-              className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white group shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm sm:text-base"
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left column - Content */}
+          <div className="text-center lg:text-left">
+            <Badge className="bg-orange-100 text-orange-700 border-orange-200 text-sm md:text-base px-4 py-1.5 md:px-5 md:py-2 mb-6">
+              🚀 Nouvelle Saison 2024-2025
+            </Badge>
+            
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+              Développez vos compétences <br />
+              <span className="bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent">
+                avec le Club IMPACT
+              </span>
+            </h1>
+            
+            <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
+              Rejoignez notre communauté étudiante dynamique et développez vos talents en photographie, design, podcast et plus encore dans un environnement stimulant et créatif.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Button size="lg" className="bg-[#FC9804] hover:bg-[#FFAE07] text-white text-base md:text-lg px-8 py-6">
+                <Link href="/rejoindre">
+                  Rejoindre le Club <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </Button>
+              
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-[#FC9804] text-[#FC9804] hover:bg-[#FC9804]/10 text-base md:text-lg px-8 py-6"
+                onClick={handleOpenVideo}
+              >
+                <Play className="w-5 h-5 mr-2" />
+                Voir la vidéo
+              </Button>
+            </div>
+            
+            <div className="mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-6">
+              <div className="flex items-center">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3, 4, 5].map((item) => (
+                    <div key={item} className="w-10 h-10 rounded-full border-2 border-white bg-gray-200">
+                      <Image 
+                        src={`/avatars/avatar-${item}.jpg`}
+                        alt="Membre du club"
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div className="ml-4 text-left">
+                  <p className="text-sm font-medium text-gray-900">+50 Membres</p>
+                  <p className="text-xs text-gray-500">Nous rejoignent chaque année</p>
+                </div>
+              </div>
+              
+              <div className="h-10 border-l border-gray-200 hidden md:block"></div>
+              
+              <div className="text-center md:text-left">
+                <div className="flex items-center justify-center lg:justify-start">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <Star key={star} className="w-5 h-5 text-yellow-400 fill-current" />
+                  ))}
+                </div>
+                <p className="text-sm text-gray-600 mt-1">Étudiants satisfaits</p>
+              </div>
+            </div>
+          </div>
+          
+          {/* Right column - Image */}
+          <div className="relative h-[400px] md:h-[500px] lg:h-[600px] rounded-2xl overflow-hidden shadow-xl border-8 border-white">
+            <Image
+              src="/hero-image.jpg"
+              alt="Étudiants du Club IMPACT"
+              fill
+              className="object-cover"
+              priority
+            />
+            
+            {/* Play button overlay */}
+            <div 
+              className="absolute inset-0 flex items-center justify-center bg-black/20 cursor-pointer group transition-all duration-300"
+              onClick={handleOpenVideo}
             >
-              <Sparkles className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-              Rejoindre le Club
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
-          <Button
-            variant="outline"
-            size="lg"
-            className="border-orange-200 hover:bg-orange-50 bg-white/80 backdrop-blur-sm shadow-md hover:shadow-lg transition-all duration-300"
-            onClick={handleOpenVideo}
-          >
-            <Play className="mr-2 h-4 w-4" />
-            Savoir Plus
-          </Button>
-        </div>
-
-        <div className="flex items-center justify-between xs:justify-start xs:gap-4 sm:gap-8 pt-4 sm:pt-6">
-          <div className="text-center group min-w-0 flex-1 xs:flex-initial">
-            <div className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
-              50+
-            </div>
-            <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
-              <span className="block xs:hidden">Membres</span>
-              <span className="hidden xs:block">Membres Actifs</span>
-            </div>
-          </div>
-          <Separator orientation="vertical" className="h-8 sm:h-12 bg-orange-200 flex-shrink-0" />
-          <div className="text-center group min-w-0 flex-1 xs:flex-initial">
-            <div className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
-              20+
-            </div>
-            <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
-              <span className="block xs:hidden">Événements</span>
-              <span className="hidden xs:block">Événements/An</span>
-            </div>
-          </div>
-          <Separator orientation="vertical" className="h-8 sm:h-12 bg-orange-200 flex-shrink-0" />
-          <div className="text-center group min-w-0 flex-1 xs:flex-initial">
-            <div className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
-              5
-            </div>
-            <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
-              <span className="block xs:hidden">Domaines</span>
-              <span className="hidden xs:block">Domaines d&apos;Expertise</span>
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-white/90 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Play className="w-8 h-8 md:w-10 md:h-10 text-[#FC9804] fill-current ml-1" />
+              </div>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="order-1 lg:order-2 w-full">
-        <ImageSlider />
-      </div>
-    </div>
-  </div>
-</section>
-
-      <VideoPopup isOpen={isVideoOpen} onClose={handleCloseVideo} videoSrc="/club-impact-presentation.mp4" />
-    </>
+      
+      {/* Video Popup */}
+      <VideoPopup 
+        isOpen={isVideoOpen} 
+        onClose={handleCloseVideo}
+        videoSrc="/club-video.mp4"
+      />
+    </section>
   )
 }
