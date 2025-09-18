@@ -115,7 +115,7 @@ export function TestimonialSlider() {
                   <CardContent className="p-6 flex flex-col flex-grow">
                     <div className="flex items-center gap-4 mb-4">
                       <Avatar className="h-12 w-12 border-2 border-orange-200">
-                        <AvatarImage src={testimonial.avatar} alt={`${testimonial.name}'s avatar`} />
+                        <AvatarImage src={testimonial.avatar} alt={`${testimonial.name}&#39;s avatar`} />
                         <AvatarFallback className="bg-orange-100 text-orange-600">
                           {testimonial.name.charAt(0)}
                         </AvatarFallback>
@@ -125,7 +125,7 @@ export function TestimonialSlider() {
                         <div className="text-sm text-orange-600">{testimonial.role}</div>
                       </div>
                     </div>
-                    <p className="text-gray-600 mb-4 flex-grow">"{testimonial.content}"</p>
+                    <p className="text-gray-600 mb-4 flex-grow">&quot;{testimonial.content}&quot;</p>
                     <div className="flex items-center">
                       <div className="flex">
                         {renderStars(testimonial.rating)}

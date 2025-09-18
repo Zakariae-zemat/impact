@@ -223,8 +223,8 @@ export default function HomePage() {
                     20+
                   </div>
                   <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
-                    <span className="block xs:hidden">Événements</span>
-                    <span className="hidden xs:block">Événements/An</span>
+                    <span className="block xs:hidden">&Eacute;v&eacute;nements</span>
+                    <span className="hidden xs:block">&Eacute;v&eacute;nements/An</span>
                   </div>
                 </div>
                 <Separator orientation="vertical" className="h-8 sm:h-12 bg-orange-200 flex-shrink-0" />
@@ -234,7 +234,7 @@ export default function HomePage() {
                   </div>
                   <div className="text-xs sm:text-sm text-gray-600 font-medium leading-tight">
                     <span className="block xs:hidden">Domaines</span>
-                    <span className="hidden xs:block">Domaines d'Expertise</span>
+                    <span className="hidden xs:block">Domaines d&apos;Expertise</span>
                   </div>
                 </div>
               </div>
@@ -255,7 +255,7 @@ export default function HomePage() {
           <div className="text-center space-y-6 mb-16">
             <Badge className="bg-yellow-100 text-yellow-800 border-yellow-200 text-lg px-4 py-2">
               <Rocket className="w-5 h-5 mr-2" />
-              Nos Domaines d'Excellence
+              Nos Domaines d&#39;Excellence
             </Badge>
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 text-balance">
               Développez vos Talents avec
@@ -264,7 +264,7 @@ export default function HomePage() {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto text-pretty leading-relaxed">
-              Découvrez nos domaines d'expertise qui vous permettront de développer vos compétences et votre
+              Découvrez nos domaines d&#39;expertise qui vous permettront de développer vos compétences et votre
               créativité dans un environnement stimulant et innovant.
             </p>
           </div>
@@ -280,7 +280,7 @@ export default function HomePage() {
                   Photographie
                 </CardTitle>
                 <CardDescription className="text-gray-600 leading-relaxed">
-                  Maîtrisez l'art de capturer les moments avec des ateliers pratiques animés par des professionnels
+                  Maîtrisez l&#39;art de capturer les moments avec des ateliers pratiques animés par des professionnels
                   expérimentés et passionnés.
                 </CardDescription>
               </CardHeader>
@@ -330,7 +330,7 @@ export default function HomePage() {
                   Design
                 </CardTitle>
                 <CardDescription className="text-gray-600 leading-relaxed">
-                  Découvrez l'univers du design graphique et développez vos compétences créatives avec nos ateliers
+                  Découvrez l&#39;univers du design graphique et développez vos compétences créatives avec nos ateliers
                   pratiques et projets concrets.
                 </CardDescription>
               </CardHeader>
@@ -355,8 +355,8 @@ export default function HomePage() {
                   Podcasts et Interviews
                 </CardTitle>
                 <CardDescription className="text-gray-600 leading-relaxed">
-                  Participez à nos podcasts passionnants couvrant l'orientation post-universitaire, les événements et
-                  l'actualité étudiante.
+                  Participez à nos podcasts passionnants couvrant l&#39;orientation post-universitaire, les événements et
+                  l&#39;actualité étudiante.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -406,7 +406,7 @@ export default function HomePage() {
                 </CardTitle>
                 <CardDescription className="text-gray-600 leading-relaxed">
                   Rejoignez une communauté dynamique où innovation, médiatisation et communication se rencontrent pour
-                  créer l'impact positif.
+                  créer l&#39;impact positif.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -432,7 +432,7 @@ export default function HomePage() {
               Témoignages
             </Badge>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 text-balance">
-              Ce que disent nos Specials <br />
+              Ce que disent nos Specials 
               <span className="bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent">
                 Membres
               </span>
@@ -465,8 +465,8 @@ export default function HomePage() {
               <span className="block">Dynamique et Inspirante ?</span>
             </h2>
             <p className="text-xl text-white/90 text-pretty max-w-3xl mx-auto leading-relaxed">
-              Ne manquez pas cette opportunité exceptionnelle de grandir, d'apprendre, de positiver et de partager vos
-              idées créatives. Votre parcours d'excellence commence maintenant !
+              Ne manquez pas cette opportunité exceptionnelle de grandir, d&#39;apprendre, de positiver et de partager vos
+              idées créatives. Votre parcours d&#39;excellence commence maintenant !
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center pt-4">
               <Link href="/rejoindre">
@@ -502,7 +502,7 @@ export default function HomePage() {
               </div>
               <p className="text-gray-300 text-pretty leading-relaxed">
                 Une initiative révolutionnaire qui inspire, éduque et soutient les étudiants dans leur développement
-                personnel et professionnel à travers l'innovation et la créativité.
+                personnel et professionnel à travers l&#39;innovation et la créativité.
               </p>
             </div>
 
