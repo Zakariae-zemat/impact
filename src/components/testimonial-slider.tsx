@@ -1,0 +1,157 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Star } from "lucide-react";
+
+interface Testimonial {
+  id: number;
+  name: string;
+  role: string;
+  content: string;
+  rating: number;
+  avatar: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    id: 1,
+    name: "Sarah K.",
+    role: "Membre du Club",
+    content: "Rejoindre le Club IMPACT a été une expérience transformatrice. J'ai pu développer mes compétences en photographie et rencontrer des personnes incroyables.",
+    rating: 5,
+    avatar: "/avatars/avatar-1.jpg"
+  },
+  {
+    id: 2,
+    name: "Mehdi T.",
+    role: "Responsable Ateliers",
+    content: "En tant qu'animateur, voir l'évolution des membres est extrêmement gratifiant. Leur créativité et leur engagement sont une source d'inspiration.",
+    rating: 5,
+    avatar: "/avatars/avatar-2.jpg"
+  },
+  {
+    id: 3,
+    name: "Lina M.",
+    role: "Nouvelle Membre",
+    content: "Je viens de rejoindre le club et je suis déjà impressionnée par l'ambiance bienveillante et la qualité des ateliers. Je recommande vivement !",
+    rating: 4,
+    avatar: "/avatars/avatar-3.jpg"
+  }
+];
+
+export function TestimonialSlider() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) {
+      const timer = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+      }, 5000);
+      
+      return () => clearInterval(timer);
+    }
+  }, [isMobile]);
+
+  const renderStars = (rating: number) => {
+    return Array(5).fill(0).map((_, i) => (
+      <Star 
+        key={i} 
+        className={`w-4 h-4 ${i < rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'}`} 
+      />
+    ));
+  };
+
+  if (!isMobile) {
+    return (
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {testimonials.map((testimonial) => (
+          <Card key={testimonial.id} className="border-orange-200 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col">
+            <CardContent className="p-6 flex flex-col flex-grow">
+              <div className="flex items-center gap-4 mb-4">
+                <Avatar className="h-12 w-12 border-2 border-orange-200">
+                  <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                  <AvatarFallback className="bg-orange-100 text-orange-600">
+                    {testimonial.name.charAt(0)}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <div className="font-medium text-gray-900">{testimonial.name}</div>
+                  <div className="text-sm text-orange-600">{testimonial.role}</div>
+                </div>
+              </div>
+              <p className="text-gray-600 mb-4 flex-grow">"{testimonial.content}"</p>
+              <div className="flex items-center">
+                <div className="flex">
+                  {renderStars(testimonial.rating)}
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    );
+  }
+
+  // Mobile carousel view
+  return (
+    <div className="relative overflow-hidden">
+      <div 
+        className="flex transition-transform duration-500 ease-in-out"
+        style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+      >
+        {testimonials.map((testimonial) => (
+          <div key={testimonial.id} className="w-full flex-shrink-0 px-2">
+            <Card className="border-orange-200 bg-white/80 backdrop-blur-sm shadow-lg h-full">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-4 mb-4">
+                  <Avatar className="h-12 w-12 border-2 border-orange-200">
+                    <AvatarImage src={testimonial.avatar} alt={testimonial.name} />
+                    <AvatarFallback className="bg-orange-100 text-orange-600">
+                      {testimonial.name.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <div className="font-medium text-gray-900">{testimonial.name}</div>
+                    <div className="text-sm text-orange-600">{testimonial.role}</div>
+                  </div>
+                </div>
+                <p className="text-gray-600 mb-4">"{testimonial.content}"</p>
+                <div className="flex">
+                  {renderStars(testimonial.rating)}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        ))}
+      </div>
+      
+      {/* Indicators */}
+      <div className="flex justify-center mt-6 space-x-2">
+        {testimonials.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2.5 h-2.5 rounded-full transition-colors ${
+              index === currentIndex ? 'bg-orange-600' : 'bg-gray-300'
+            }`}
+            aria-label={`Aller au témoignage ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
