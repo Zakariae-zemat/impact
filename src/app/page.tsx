@@ -451,7 +451,7 @@ export default function HomePage() {
               <CardContent>
                 <div className="aspect-video rounded-xl border border-orange-200 overflow-hidden group-hover:scale-105 transition-transform duration-500 shadow-inner">
                   <img 
-                    src="/IMG_0428.JPG" 
+                    src="/IMG_0428.jpg" 
                     alt="Équipe vidéo" 
                     className="w-full h-full object-cover"
                   />
