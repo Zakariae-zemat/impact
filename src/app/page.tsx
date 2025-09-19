@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
+import { motion, useInView, AnimatePresence } from "framer-motion"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -93,7 +94,10 @@ export default function HomePage() {
                 </Link>
               </div>
               <Link href="/rejoindre" className="ml-4">
-                <Button className="bg-orange-600 hover:bg-orange-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-orange-600 text-sm md:text-base">
+                <Button
+                  size="lg"
+                  className="bg-orange-600 hover:bg-orange-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 border-2 border-orange-600 text-sm md:text-base"
+                >
                   Nous Rejoindre
                 </Button>
               </Link>
@@ -156,14 +160,34 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="py-8 sm:py-12 md:py-20 lg:py-28 bg-gradient-to-br from-orange-50 via-yellow-50 to-white relative overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
+      <motion.section 
+        className="py-8 sm:py-12 md:py-20 lg:py-28 bg-gradient-to-br from-orange-50 via-yellow-50 to-white relative overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <motion.div 
+          className="absolute inset-0 z-0 opacity-20"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.2 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
           <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
-        </div>
+        </motion.div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 items-center">
-            <div className="space-y-4 sm:space-y-6 md:space-y-8 order-2 lg:order-1">
-              <div className="space-y-3 sm:space-y-4 md:space-y-6">
+            <motion.div 
+              className="space-y-4 sm:space-y-6 md:space-y-8 order-2 lg:order-1"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <motion.div 
+                className="space-y-3 sm:space-y-4 md:space-y-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
                 <Badge className="bg-orange-100 text-orange-700 border-orange-200 hover:bg-orange-200 transition-colors text-xs sm:text-sm inline-flex">
                   <Target className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-1.5 flex-shrink-0" />
                   <span className="truncate sm:whitespace-normal">Nouvelle Année Universitaire 2025-2026</span>
@@ -171,7 +195,7 @@ export default function HomePage() {
 
                 <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-balance">
                   <span className="block text-gray-900 mb-1 sm:mb-2">Rejoignez le Club</span>
-                  <span className="block bg-gradient-to-r from-orange-600 via-yellow-600 to-orange-600 bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent">
                     {displayedText}
                     {isTyping && displayedText.length < 6 && (
                       <span className="animate-pulse text-orange-400">|</span>
@@ -183,9 +207,14 @@ export default function HomePage() {
                   Une initiative révolutionnaire à la FST qui inspire, éduque et soutient les étudiants dans leur
                   développement personnel et professionnel à travers la créativité et la communication.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <motion.div 
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
                 <Link href="/rejoindre" className="w-full sm:w-auto">
                   <Button
                     size="lg"
@@ -205,9 +234,14 @@ export default function HomePage() {
                   <Play className="mr-2 h-4 w-4" />
                   Savoir Plus
                 </Button>
-              </div>
+              </motion.div>
 
-              <div className="flex items-center justify-between xs:justify-start xs:gap-4 sm:gap-8 pt-4 sm:pt-6">
+              <motion.div 
+                className="flex items-center justify-between xs:justify-start xs:gap-4 sm:gap-8 pt-4 sm:pt-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+              >
                 <div className="text-center group min-w-0 flex-1 xs:flex-initial">
                   <div className="text-xl xs:text-2xl sm:text-3xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
                     50+
@@ -237,15 +271,20 @@ export default function HomePage() {
                     <span className="hidden xs:block">Domaines d&apos;Expertise</span>
                   </div>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            <div className="order-1 lg:order-2 w-full">
+            <motion.div 
+              className="order-1 lg:order-2 w-full"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            >
               <ImageSlider />
-            </div>
+            </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       <VideoPopup isOpen={isVideoOpen} onClose={() => setIsVideoOpen(false)} />
       
@@ -410,7 +449,7 @@ export default function HomePage() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-              <div className="aspect-video rounded-xl border border-orange-200 overflow-hidden group-hover:scale-105 transition-transform duration-500 shadow-inner">
+                <div className="aspect-video rounded-xl border border-orange-200 overflow-hidden group-hover:scale-105 transition-transform duration-500 shadow-inner">
                   <img 
                     src="/IMG_0428.JPG" 
                     alt="Équipe vidéo" 
@@ -498,7 +537,7 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-12">
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                  <img className="w-32 h-12" src="logo.png" alt="" />
+                <img className="w-32 h-12" src="logo.png" alt="" />
               </div>
               <p className="text-gray-300 text-pretty leading-relaxed">
                 Une initiative révolutionnaire qui inspire, éduque et soutient les étudiants dans leur développement
